@@ -2,6 +2,7 @@ baseURL = 'https://blog.dpinkerton.com/'
 languageCode = 'en-us'
 title = 'David Pinkerton'
 theme = 'PaperMod'
+timeZone = 'Australia/Sydney'
 
 [params]
   defaultTheme = "auto"
