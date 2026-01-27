@@ -15,4 +15,4 @@ This workflow gives me:
 - The speed of a static site
 - Automatic deployments on git push
 
-*Last updated via GitHub webhook!*
+The full workflow is now complete.
