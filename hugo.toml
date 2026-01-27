@@ -23,6 +23,11 @@ timeZone = 'Australia/Sydney'
     name = "Posts"
     url = "/posts/"
     weight = 10
+  [[menu.main]]
+    identifier = "rss"
+    name = "RSS"
+    url = "/index.xml"
+    weight = 20
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
