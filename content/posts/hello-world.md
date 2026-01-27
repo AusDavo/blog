@@ -1,6 +1,6 @@
 ---
 title: "Hello World"
-date: 2026-01-28
+date: 2026-01-28T00:00:00+10:00
 draft: false
 ---
 
