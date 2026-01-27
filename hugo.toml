@@ -1,0 +1,32 @@
+baseURL = 'https://blog.dpinkerton.com/'
+languageCode = 'en-us'
+title = 'David Pinkerton'
+theme = 'PaperMod'
+
+[params]
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  disableSpecial1stPost = true
+
+  [params.homeInfoParams]
+    Title = "David Pinkerton"
+    Content = "Welcome to my blog"
+
+[menu]
+  [[menu.main]]
+    identifier = "posts"
+    name = "Posts"
+    url = "/posts/"
+    weight = 10
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[markup]
+  [markup.highlight]
+    style = "monokai"
+    lineNos = false
