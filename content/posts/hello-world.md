@@ -14,3 +14,5 @@ This workflow gives me:
 - The comfort of writing in Obsidian
 - The speed of a static site
 - Automatic deployments on git push
+
+*Last updated via GitHub webhook!*
