@@ -1,6 +1,6 @@
 ---
-title: "{{title}}"
-date: {{date:YYYY-MM-DDTHH:mm:ss}}+10:00
+title: ""
+date: {{date:YYYY-MM-DD}}T{{time:HH:mm:ss}}+10:00
 draft: false
 tags: []
 ---
