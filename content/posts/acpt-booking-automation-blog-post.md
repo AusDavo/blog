@@ -4,7 +4,7 @@ date: 2026-01-28T22:55:01+10:00
 draft: false
 tags: []
 ---
-A friend of mine, Aaron, is a personal trainer starting his own business. He needed a way for clients to book sessions online and automatically receive a health screening form before their first appointment. Instead of paying for expensive SaaS subscriptions, we built the whole thing with self-hosted, open-source tools.
+A friend of mine, Aaron, is an experienced and popular personal trainer. He needed a way for clients to book sessions online and automatically receive a health screening form before their first appointment. Instead of paying for expensive SaaS subscriptions, we built the whole thing with self-hosted, open-source tools.
 
 ## The Problem
 
