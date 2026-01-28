@@ -15,7 +15,17 @@ timeZone = 'Australia/Sydney'
 
   [params.homeInfoParams]
     Title = "David Pinkerton"
-    Content = "Welcome to my blog"
+    Content = "Writing about whatever I find interesting — usually something technical."
+
+  [[params.socialIcons]]
+    name = "nostr"
+    title = "Nostr"
+    url = "nostr:npub1jz0rlhp9ngs3at2kfhzcnc62sxh0y9rxt40x3z003wmdguljky9quaaju6"
+
+  [[params.socialIcons]]
+    name = "email"
+    title = "Email"
+    url = "mailto:blog@dpinkerton.com"
 
 [menu]
   [[menu.main]]
