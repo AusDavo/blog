@@ -1,3 +1,9 @@
+---
+title: Pair Your Push and Pull by Force Vector, Not by Label
+date: 2026-01-28T13:06:05+10:00
+draft: false
+tags: []
+---
 Most push/pull routines pair exercises by category: horizontal push with horizontal pull, vertical push with vertical pull. But this misses something important—how you actually move under load.
 
 ## The Problem with Textbook Pairings
