@@ -11,10 +11,14 @@
             "id": "ed0da95538d1a6a1",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "content/posts/Pair Your Push and Pull by Force Vector, Not by Label.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Pair Your Push and Pull by Force Vector, Not by Label"
             }
           }
         ]
@@ -182,6 +186,10 @@
   },
   "active": "ed0da95538d1a6a1",
   "lastOpenFiles": [
+    "content/posts/Pair Your Push and Pull by Force Vector, Not by Label.md",
+    "hugo.toml.tmp.25248.1769551921246",
+    "README.md",
+    "README.md.tmp.25248.1769551639960",
     "content/posts/Hello again, world.md",
     "content/posts/how-this-blog-works.md",
     "content/posts/how-this-blog-works.md.tmp.25248.1769551393380",
