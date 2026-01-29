@@ -15,7 +15,7 @@ timeZone = 'Australia/Sydney'
 
   [params.homeInfoParams]
     Title = "David Pinkerton"
-    Content = "Writing about whatever I find interesting — usually something technical."
+    Content = "Systems thinking applied to servers, sats, and sets."
 
   [[params.socialIcons]]
     name = "nostr"
