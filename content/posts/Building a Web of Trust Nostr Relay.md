@@ -121,6 +121,16 @@ For anyone wanting to replicate this:
 
 The write policy plugin is ~50 lines of Python. The refresh script is ~30 lines. Total maintenance: basically zero once set up.
 
+### Gotcha: Verify It's Actually Filtering
+
+After setup, check your logs for "blocked" messages:
+
+```
+docker logs strfry | grep blocked
+```
+
+If you see events flowing in without blocks, your policy isn't running. Common culprits: missing `ROUTER` env var, wrong file permissions on the policy script, or stale config persisted in Docker volumes.
+
 ## Closing Thoughts
 
 "Community benefit" doesn't have to mean "open to everyone." A relay that reliably serves a specific community - even a small one - is more valuable than a relay that serves everyone poorly.
