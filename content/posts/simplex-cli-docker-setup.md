@@ -1,12 +1,14 @@
 ---
 title: "Self-Hosted SimpleX CLI in Docker: Private Notifications Without Big Tech"
-date: 2026-02-01T00:05:21+10:00
+date: 2026-02-01T00:19:03+10:00
 draft: false
 tags: []
 ---
 Most bot and notification setups rely on Telegram or Signal. Both are fine, but they require trusting third-party infrastructure with your metadata. After reading about [OpenClawd](https://github.com/beratcmn/openclawd) and noticing the Telegram dependency, I decided to set up something more private.
 
 SimpleX is a messaging protocol with no user identifiers - no phone numbers, no usernames, no accounts. Combined with a self-hosted relay server, you get end-to-end encrypted messaging where you control the infrastructure.
+
+The code is on GitHub: [AusDavo/simplex-cli-docker](https://github.com/AusDavo/simplex-cli-docker)
 
 ## What I'm Building
 
@@ -137,8 +139,17 @@ fi
 echo "Starting socat proxy (0.0.0.0:$EXTERNAL_PORT -> 127.0.0.1:$INTERNAL_PORT)..."
 socat TCP-LISTEN:$EXTERNAL_PORT,fork,reuseaddr TCP:127.0.0.1:$INTERNAL_PORT &
 
+# Build command args
+ARGS=("$@")
+
+# Add SMP server if configured
+if [ -n "$SMP_SERVER" ]; then
+    echo "Using SMP server: $SMP_SERVER"
+    ARGS+=("-s" "$SMP_SERVER")
+fi
+
 echo "Starting SimpleX CLI in API mode on internal port $INTERNAL_PORT..."
-exec simplex-chat "$@"
+exec simplex-chat "${ARGS[@]}"
 ```
 
 ### Docker Compose
@@ -153,15 +164,31 @@ services:
     volumes:
       - simplex-data:/home/simplex/.simplex
     restart: unless-stopped
+    env_file:
+      - path: .env
+        required: false
     environment:
-      - SIMPLEX_USER=SimplexBot
-    networks:
-      - your-network
-    # Use your own SMP relay
-    command: ["-p", "5226", "-s", "smp://YOUR_FINGERPRINT@your-relay.example.com"]
+      - SIMPLEX_USER=${SIMPLEX_USER:-SimplexBot}
+      - SMP_SERVER=${SMP_SERVER:-}
 
 volumes:
   simplex-data:
+```
+
+Configure via `.env`:
+
+```bash
+SIMPLEX_USER=SimplexBot
+SMP_SERVER=smp://YOUR_FINGERPRINT@your-relay.example.com
+```
+
+For external networks, use `docker-compose.override.yml`:
+
+```yaml
+services:
+  simplex-cli:
+    networks:
+      - your-network
 
 networks:
   your-network:
