@@ -3,7 +3,6 @@ title: "My First Open Source Contribution: SimpleX Chat WebSocket Binding"
 date: 2026-02-01
 tags: ["simplex", "open-source", "docker", "self-hosting"]
 ---
-
 This is a follow-on to my [SimpleX CLI Docker Setup](/posts/simplex-cli-docker-setup/) post. If you read that, you might remember the socat workaround I used to get around the WebSocket server only binding to localhost:
 
 ```yaml
