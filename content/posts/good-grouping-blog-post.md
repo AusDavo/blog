@@ -1,7 +1,7 @@
 ---
-title: "Building a Pub Darts App With Claude as My Pair Programmer"
+title: Building a Pub Darts App With Claude as My Pair Programmer
 date: 2026-02-05
-draft: true
+draft: false
 ---
 
 A few of us play darts remotely — I'm in Brisbane, Thomas is in Dubbo, others are scattered around Australia. We jump on a voice chat, call out our throws, and each keep score on whatever's handy. I use a notepad. Some of the others use chalkboards. It works, but someone always loses track of who's closed what, and there's no record of the game afterwards.
