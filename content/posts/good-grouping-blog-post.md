@@ -40,4 +40,4 @@ The most useful part wasn't code generation. It was having something that holds 
 
 It's not magic. I still had to catch the cricket win bug by actually playing. But for a self-hosted side project where I'm the only developer, having a pair programmer that never loses context on a nine-file change is genuinely useful.
 
-The app is at [darts.dpinkerton.com](https://darts.dpinkerton.com) and the source is on [GitHub](https://github.com/AusDavo/good-grouping). Next session is Friday. Thomas wants revenge.
+The app is at [darts.dpinkerton.com](https://darts.dpinkerton.com) and the source is on [GitHub](https://github.com/AusDavo/good-grouping). Next session is Friday. I want to win that cricket crown from Thomas!
