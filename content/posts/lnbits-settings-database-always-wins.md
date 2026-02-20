@@ -95,7 +95,7 @@ Restart the container:
 LNbits started in 0.28 seconds.
 ```
 
-You can also fix this through the Admin UI itself if you can log in — go to the funding source settings and update the values there. But if LNbits is stuck on VoidWallet, you might not have a functioning instance to log into, which makes the direct database approach necessary.
+I used database manipulation because I was already using Claude in the CLI but you can also fix this through the Admin UI itself — go to the funding source settings and update the values there.
 
 ## Why the Error Was Misleading
 
