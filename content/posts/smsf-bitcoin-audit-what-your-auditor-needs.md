@@ -1,6 +1,6 @@
 ---
 title: Your SMSF Holds Bitcoin — What Does Your Auditor Actually Need?
-date: 2026-02-20T12:00:00+10:00
+date: 2026-02-20T12:16:00+11:00
 draft: false
 tags: []
 ---
