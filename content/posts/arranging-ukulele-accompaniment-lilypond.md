@@ -1,6 +1,6 @@
 ---
 title: Arranging Ukulele Accompaniment for Irish Tunes in LilyPond
-date: 2026-02-22T23:30:00+10:00
+date: 2026-02-22T23:05:00+10:00
 draft: false
 tags:
   - music
