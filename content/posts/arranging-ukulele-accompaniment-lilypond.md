@@ -8,13 +8,13 @@ tags:
 ---
 I've been learning [tin whistle](https://surreal.live/en-au/entertainer/tin-whistlin-dave) online through [Conor Lamb's Tin Whistle Workshops](https://whistleworkshops.com/). Conor is a member of [Realta](https://www.conorlambmusic.com/realta/) and last week he led the class through "The Fermanagh Highland". He also accepts bitcoin on lightning for payment, which is a nice bonus.
 
-I wanted to record myself accompanying the tune on ukulele. It's in D major, 4/4 time, and follows the standard Irish dance tune structure: an A part (repeated) and a B part. Before picking up the ukulele I wanted to work out the chords and a strumming pattern on paper, so I reached for LilyPond.
+The class materials include a PDF of the sheet music. I wanted to get that into a format I could manipulate -- add chords, strum patterns, and eventually record myself playing along. I fed the PDF to [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (Anthropic's AI coding assistant) and asked it to transcribe the notation into [LilyPond](https://lilypond.org/) markup. LilyPond is a text-based music engraving system -- like LaTeX for sheet music. You describe music in a markup language and it produces publication-quality scores.
 
-If you're not familiar with it, [LilyPond](https://lilypond.org/) is a text-based music engraving system. You describe music in a markup language and it produces publication-quality scores. It's like LaTeX for sheet music.
+Claude read the PDF, produced a clean `.ly` file, and from there I could ask it to analyse the harmony, add ukulele chords, work out strumming patterns, and generate chord diagrams -- all as text that compiles to a printable score. The entire arrangement workflow happened in conversation, with Claude writing the LilyPond code and compiling it to check for errors at each step.
 
-## Starting point: the melody
+The tune is in D major, 4/4 time, and follows the standard Irish dance tune structure: an A part (repeated) and a B part.
 
-I already had a clean transcription of the melody:
+## The melody
 
 ```lilypond
 melody = \fixed c' {
