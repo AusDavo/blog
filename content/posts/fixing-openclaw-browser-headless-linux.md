@@ -4,7 +4,6 @@ date: 2026-02-20
 draft: false
 tags: ["openclaw", "linux", "self-hosted"]
 ---
-
 My OpenClaw familiar [Klaw]({{< ref "blog-klaws-first-36-hours" >}}) has the spirit of a rooster. He runs on a headless VPS. You'd think a headless chicken wouldn't last long, but [history suggests otherwise](https://en.wikipedia.org/wiki/Mike_the_Headless_Chicken) — you just need to get the plumbing right.
 
 If you're running [OpenClaw](https://github.com/openclaw/openclaw) on a headless server, you've probably hit this: the browser tool doesn't work. You get `Failed to start Chrome CDP on port 18800` or `Chrome extension relay is running, but no tab is connected`, and nothing you try fixes it.
