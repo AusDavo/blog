@@ -1,6 +1,6 @@
 ---
 title: Building a Self-Hosted Memory Layer for Claude Code
-date: 2026-03-04T18:00:00+10:00
+date: 2026-03-04T10:32:00+10:00
 draft: false
 tags:
   - ai
