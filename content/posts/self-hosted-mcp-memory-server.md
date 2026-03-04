@@ -46,7 +46,7 @@ Phone/browser ──HTTPS─────┘                ▼
 
 - **Embeddings**: OpenAI `text-embedding-3-small` at 1536 dimensions. Cheap — roughly $0.01/month at my usage. I'd like to move to a local model eventually, but this gets the job done today.
 - **Transport**: Streamable HTTP (not SSE, which is deprecated in Claude Code). FastMCP serves at `/mcp` and handles the MCP protocol negotiation.
-- **Auth**: A Bearer token validated on every tool call via FastMCP middleware. The token is generated with `openssl rand -hex 32` and passed as an HTTP header.
+- **Auth**: A Bearer token validated at the HTTP layer via Starlette middleware. The token is generated with `openssl rand -hex 32` and passed as an HTTP header.
 - **Reverse proxy**: Caddy handles TLS termination. The MCP server container joins my existing `caddy_rev-proxy` Docker network so Caddy can reach it by container name. No ports exposed to the host.
 
 ## Key Implementation Details
@@ -62,25 +62,32 @@ CREATE INDEX idx_memories_embedding
 
 ### Bearer Auth Middleware
 
-FastMCP 3.x has a proper middleware system. I wrote a `BearerAuthMiddleware` that intercepts every tool call, pulls the `Authorization` header, and validates it against the configured API key:
+I originally used FastMCP's built-in middleware system to validate the Bearer token on each tool call. That worked during initial testing but broke in production — FastMCP's `get_http_headers()` [doesn't reliably propagate headers](https://github.com/jlowin/fastmcp/issues/1233) into the tool execution context with the Streamable HTTP transport. Every tool call returned "Unauthorized" even though the client was sending the correct header.
+
+The fix was moving auth down to the Starlette layer, where headers are always available:
 
 ```python
-class BearerAuthMiddleware(Middleware):
-    async def on_call_tool(self, context, call_next):
-        headers = get_http_headers()
-        auth_header = headers.get("authorization", "")
+class BearerAuthMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request, call_next):
+        if request.method == "OPTIONS":
+            return await call_next(request)
 
+        auth_header = request.headers.get("authorization", "")
         if not auth_header.startswith("Bearer "):
-            raise ToolError("Unauthorized")
+            return JSONResponse(
+                {"error": "Unauthorized"}, status_code=401
+            )
 
         token = auth_header.removeprefix("Bearer ").strip()
         if token != os.environ["MCP_API_KEY"]:
-            raise ToolError("Unauthorized")
+            return JSONResponse(
+                {"error": "Unauthorized"}, status_code=401
+            )
 
-        return await call_next(context)
+        return await call_next(request)
 ```
 
-This means unauthenticated requests get rejected at the middleware level before any tool logic runs.
+This is arguably more correct anyway — auth belongs at the transport layer, not the application layer. The middleware is passed to FastMCP's `run()` method via the `middleware` parameter, so it wraps the entire ASGI app.
 
 ### Connecting Claude Code
 
