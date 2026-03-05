@@ -8,7 +8,7 @@ tags:
   - mcp
   - docker
 ---
-Every conversation with an AI starts from zero. You explain your stack, your preferences, your project history — and next session, it's all gone. Claude Code has a local memory directory that helps within a single machine, but it doesn't travel. It's flat files. There's no semantic search, no way to query "what did I decide about authentication last month?" and get a meaningful answer.
+Most AI tools have some form of memory now — Claude Code has its `CLAUDE.md` files, ChatGPT remembers things between sessions, Cursor has rules files. But these memory systems are siloed to one tool, stored as flat text, and not searchable by meaning. You can't query "what did I decide about authentication last month?" and get a useful answer. Your context doesn't travel between tools, and there's no structure beyond what you manually write.
 
 Nate B Jones has been [talking about this problem](https://youtu.be/2JiMmye2ezg) under the banner of "Open Brain" — the idea that your AI memory should be portable, searchable, and owned by you. His [guide](https://natesnewsletter.substack.com/p/every-ai-you-use-forgets-you-heres) walks through building a semantic memory system using Supabase and OpenRouter. It's well put together and worth watching if the concept is new to you.
 
