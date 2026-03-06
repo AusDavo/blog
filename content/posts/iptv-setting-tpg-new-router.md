@@ -1,5 +1,5 @@
 ---
-title: The IPTV Setting That Has Nothing to Do With TV
+title: The IPTV Setting That Has Nothing to Do With My TV
 date: 2026-03-07T08:19:03+10:00
 draft: false
 tags:
