@@ -1,6 +1,6 @@
 ---
 title: "Talk Into Your Phone, Get a Blog Post: Building a Voice-to-Post Pipeline"
-date: 2026-03-08T18:00:00+10:00
+date: 2026-03-08T14:30:00+10:00
 draft: false
 tags:
   - ai
