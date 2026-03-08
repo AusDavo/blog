@@ -1,7 +1,7 @@
 ---
 title: I Built the Right Tool for a Market That Didn't Want It
 date: 2026-02-05T21:43:04+10:00
-draft: false
+draft: true
 tags: []
 ---
 Last year I launched **CertainKey**, a service offering balance attestations and cryptographic verification of bitcoin holdings. I built an open-source tool called [Gatekeeper](https://github.com/AusDavo/gatekeeper), put up a site, and went looking for customers.
