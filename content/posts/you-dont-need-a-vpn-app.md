@@ -156,6 +156,18 @@ Even with a VPN active, your browser can leak your real IP through WebRTC (the p
 
 This disables WebRTC entirely. If you use browser-based video calls, you'll need to toggle it back on for those sessions.
 
+## Not Just Linux
+
+Everything above works on Windows, macOS, iOS, and Android too. The [WireGuard app](https://www.wireguard.com/install/) on each platform accepts the same `.conf` file — import it and you're connected.
+
+On mobile, there's an even easier option. Generate a QR code from your config:
+
+```bash
+qrencode -t ansiutf8 < /etc/wireguard/torguard.conf
+```
+
+Open the WireGuard app on your phone, tap "Add a tunnel", scan the code, done. This is especially useful for the DIY VPS setup — generate a config per person, turn it into a QR code, and text it to them. They scan it and they're on your VPN in seconds.
+
 ## The Takeaway
 
-Your Linux machine has a production-grade VPN client built into the kernel. It takes five minutes to set up, integrates natively with your desktop, and works with any WireGuard-compatible provider — or your own server. The app was never necessary.
+WireGuard is a production-grade VPN built into the Linux kernel and available as a lightweight app on every other platform. It takes five minutes to set up, uses the same config file everywhere, and works with any WireGuard-compatible provider — or your own server. The app was never necessary.
