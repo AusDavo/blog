@@ -1,5 +1,10 @@
-# Quantum FUD Is a Fake Invisible Catastrophe
-
+---
+title: Quantum FUD Is a Fake Invisible Catastrophe
+date: 2026-03-22T08:46:44+10:00
+draft: false
+tags:
+  - bitcoin
+---
 Patrick Moore's 2021 book *Fake Invisible Catastrophes and Threats of Doom* makes a simple observation: most modern scare stories are built on phenomena that are either invisible, remote, or both. CO2. Radiation. Ocean acidification. Coral bleaching in reefs you'll never visit. The average person can't observe or verify any of it firsthand. They have to trust activists, media, politicians, and scientists — all of whom have financial or political skin in the game — to tell them the truth.
 
 Moore's framework wasn't written with Bitcoin in mind. But it maps onto the quantum computing threat almost perfectly.
