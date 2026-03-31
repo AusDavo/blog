@@ -178,10 +178,40 @@ After one month:
 
 The tag distribution mirrors where I've been spending time. The source distribution confirms that Claude Code is doing the heavy lifting — which makes sense, since the CLAUDE.md instructions tell it to store memories proactively.
 
+## Memory Consolidation
+
+Duplicate detection stops identical content from being stored twice, but it doesn't help with memories that accumulated across sessions about the same topic — the same deployment path described slightly differently, or infrastructure decisions captured at different levels of detail. With 194 memories after one month, I already had clusters of related-but-not-identical content.
+
+The `find_related` tool uses pgvector's cosine distance operator in a self-join to find all memory pairs above a similarity threshold:
+
+```sql
+SELECT
+    m1.id AS id_a, m1.content AS content_a,
+    m2.id AS id_b, m2.content AS content_b,
+    1 - (m1.embedding <=> m2.embedding) AS similarity
+FROM memories m1
+JOIN memories m2
+    ON m1.id < m2.id
+    AND 1 - (m1.embedding <=> m2.embedding) >= $1
+ORDER BY similarity DESC
+LIMIT $2
+```
+
+The `m1.id < m2.id` condition avoids duplicate pairs and self-joins. With ~200 rows, the HNSW index keeps this fast. After fetching pairs, a union-find algorithm in Python groups connected memories into clusters — if A is similar to B and B is similar to C, all three end up in the same cluster.
+
+The tool doesn't auto-merge. It returns clusters with content previews and similarity scores, then the LLM uses the existing `update_memory` and `delete_memory` tools to act on them. This keeps humans in the loop for the judgement calls.
+
+Running it at the default 0.85 threshold surfaced one cluster. Dropping to 0.80 found eight clusters involving 18 memories. Of those:
+
+- **3 were genuine merge candidates** — a requirements memory that was a strict subset of a richer one, two competitive research memories covering the same analysis at different detail levels, and a team roles memory subsumed by a project overview
+- **5 were related but distinct** — sequential progress updates, different temporal snapshots, or complementary perspectives worth keeping separate
+
+After merging the three candidates and deleting the redundant copies: 194 memories down to 191, with no information lost. The remaining clusters are now documented as intentionally separate — the tool made it easy to audit and decide.
+
+An optional tag filter narrows the scope: `find_related(tags=["mhub"])` only clusters mHub memories, which is useful when you know which project has accumulated the most overlap.
+
 ## What's Next
 
-The original post listed local embeddings and memory consolidation as future goals. Local embeddings are now unblocked — the configurable provider means I can point at an Ollama instance whenever I'm ready to commit to a re-embedding migration.
-
-Memory consolidation (identifying and merging near-duplicates) is partially addressed by the duplicate detection, but a proper consolidation tool that finds related-but-different memories and suggests merges would be valuable as the corpus grows.
+The original post listed local embeddings and memory consolidation as future goals. Consolidation is done. Local embeddings are now unblocked — the configurable embedding provider means I can point at an Ollama instance whenever I'm ready to commit to a re-embedding migration.
 
 The [source code](https://github.com/AusDavo/mcp-memory-server) remains on GitHub.
