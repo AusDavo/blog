@@ -18,24 +18,24 @@ The switch monitors your npub across multiple relays. Any signed event — a pos
 
 ```
 Monitor npub across relays
-         │
-    Any event? ──yes──→ Reset timer
-         │
-         no (silence threshold exceeded)
-         │
-    Send warning DM
-         │
-    Wait... any event? ──yes──→ Reset timer
-         │
-         no (after configured warnings)
-         │
-    ┌─────────────┐
-    │   TRIGGER    │
-    │              │
-    │  • emails    │
-    │  • webhooks  │
-    │  • notes     │
-    └─────────────┘
+       │
+  Any event? ──yes──→ Reset timer
+       │
+       no (silence exceeded)
+       │
+  Send warning DM
+       │
+  Wait... any event? ──yes──→ Reset timer
+       │
+       no (after configured warnings)
+       │
+  ┌─────────────┐
+  │  TRIGGER    │
+  │             │
+  │  • emails   │
+  │  • webhooks │
+  │  • notes    │
+  └─────────────┘
 ```
 
 The warning DMs are NIP-04 encrypted and sent from a dedicated bot keypair. The bot never needs your private key — it only needs its own nsec (to send DMs and sign notes) and your npub (to watch and message).
@@ -49,14 +49,14 @@ That last one is worth highlighting: you sign an event with your own nsec ahead 
 It's a single Go binary. About 7 MB in the Docker image.
 
 ```
-┌──────────────┐       ┌──────────────────┐
-│  Go binary   │──ws──▶│  Nostr relays     │
-│              │       └──────────────────┘
-│  - monitor   │
-│  - timer     │──────▶ state.json
-│  - actions   │
-│  - dashboard │──http─▶ :8080
-└──────────────┘
+┌────────────┐     ┌───────────────┐
+│ Go binary  │─ws─▶│ Nostr relays  │
+│            │     └───────────────┘
+│ - monitor  │
+│ - timer    │───▶ state.json
+│ - actions  │
+│ - dashboard│─http─▶ :8080
+└────────────┘
 ```
 
 - **Go 1.23** with [go-nostr](https://github.com/nbd-wtf/go-nostr) for relay subscriptions, event signing, and NIP-04 encryption
@@ -70,7 +70,7 @@ The config supports human-friendly durations — `30d`, `4w`, `720h` — parsed 
 
 Setting `listen_addr: ":8080"` enables a status page that shows the current state at a glance:
 
-![Dead man's switch dashboard showing healthy status, timer progress, relay connections, and identity info](../../static/images/deadman-dashboard.png)
+![Dead man's switch dashboard showing healthy status, timer progress, relay connections, and identity info](/images/deadman-dashboard.png)
 
 The dashboard shows:
 - **Timer** — how long you've been silent and how long until trigger
