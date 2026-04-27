@@ -26,7 +26,7 @@ I added the flag on April 23. The first weekly tune that ran after that, on Apri
 
 Curious whether those changes had moved the needle, I pulled forwarding history and on-chain costs week by week.
 
-Annualised, the last four weeks come out to **roughly 3.5% gross**. That's against my deployed routing capital, calculated the same way ZEUS calculates Olympus's headline figure: gross fees divided by deployed channel capacity, annualised.
+Annualised, the last four weeks come out to **roughly 3.5% gross**. That's against my deployed outbound capacity — the local-balance side of my channels, the actual capital I have at risk in routing. Inbound capacity is the peer's sats, not mine.
 
 3.5% is not 5-6%. But it's in the ball park. For comparison, ZEUS's report cites River's passive-node baseline at approximately 1%. I'm running a few times that with no professional infrastructure, no rebalancing pool subscription, and (until very recently) some real flaws in my fee strategy. The gap between 3.5% and 6% feels closeable.
 
