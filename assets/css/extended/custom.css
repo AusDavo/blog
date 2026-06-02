@@ -1,0 +1,206 @@
+/* ==========================================================================
+   Custom styles — typography, code, and palette pass
+   Bundled over PaperMod's defaults via assets/css/extended/.
+   Override point is a single --accent variable (see palette section).
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   PALETTE
+   One accent drives links, hovers, active nav, rules, and selection.
+   Default: a slightly muted Bitcoin-leaning amber (on-theme without neon).
+   -------------------------------------------------------------------------- */
+:root {
+    --accent: #c2410c;          /* warm amber — links/accents (light) */
+    --accent-hover: #9a3412;
+    --content-measure: 720px;
+}
+
+:root[data-theme="dark"] {
+    --accent: #fb923c;          /* brighter amber for dark bg */
+    --accent-hover: #fdba74;
+}
+
+/* Refine borders/secondary so the page reads less flat */
+:root {
+    --border: rgb(230, 230, 230);
+}
+:root[data-theme="dark"] {
+    --border: rgb(58, 60, 64);
+}
+
+::selection {
+    background: var(--accent);
+    color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   TYPOGRAPHY
+   Keep the fast, privacy-friendly system stack; tune rhythm and scale.
+   -------------------------------------------------------------------------- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+.post-content {
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+/* Comfortable spacing between block elements in article body */
+.post-content p,
+.post-content ul,
+.post-content ol,
+.post-content blockquote {
+    margin: 0 0 1.25em;
+}
+
+.post-content li > ul,
+.post-content li > ol {
+    margin: 0.4em 0;
+}
+.post-content li {
+    margin: 0.3em 0;
+}
+
+/* Headings: tighter, more deliberate */
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-title,
+.entry-header h2 {
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+}
+
+.post-content h2 {
+    margin-top: 2.2em;
+    padding-bottom: 0.2em;
+    border-bottom: 1px solid var(--border);
+}
+.post-content h3 {
+    margin-top: 1.8em;
+}
+
+.post-title {
+    font-size: 2.2rem;
+    line-height: 1.15;
+}
+
+/* In-content links: accent + readable underline */
+.post-content a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+    text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+    transition: text-decoration-color 0.15s ease, color 0.15s ease;
+}
+.post-content a:hover {
+    color: var(--accent-hover);
+    text-decoration-color: var(--accent);
+}
+
+/* Blockquotes: accent rule instead of grey bar */
+.post-content blockquote {
+    border-inline-start: 3px solid var(--accent);
+    padding: 0.2em 0 0.2em 1.1em;
+    color: var(--secondary);
+    font-style: italic;
+}
+
+/* Horizontal rules and figure captions */
+.post-content hr {
+    height: 1px;
+    background: var(--border);
+    margin: 2.5em 0;
+}
+.post-content figure figcaption {
+    color: var(--secondary);
+    font-size: 0.85rem;
+}
+
+/* --------------------------------------------------------------------------
+   CODE
+   The visual surface of a sysadmin/Lightning blog — give it room to breathe.
+   -------------------------------------------------------------------------- */
+:root {
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", "Cascadia Code",
+        "Fira Code", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+code,
+pre,
+kbd {
+    font-family: var(--mono);
+    font-feature-settings: "liga" 0;  /* avoid surprise ligatures in commands */
+}
+
+/* Inline code: subtle chip that doesn't fight the prose */
+.post-content :not(pre) > code {
+    font-size: 0.85em;
+    padding: 0.15em 0.4em;
+    border-radius: 5px;
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+}
+
+/* Fenced/highlighted blocks */
+.post-content pre {
+    padding: 1em 1.1em;
+    border-radius: var(--radius);
+    line-height: 1.55;
+    font-size: 0.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    overflow-x: auto;
+}
+.post-content .highlight,
+.post-content pre code {
+    font-size: inherit;
+}
+
+/* Copy button: quieter until hover */
+.post-content .copy-code {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    font-family: var(--mono);
+}
+.post-content pre:hover .copy-code {
+    opacity: 0.85;
+}
+
+/* --------------------------------------------------------------------------
+   CHROME — nav, post entries, footer
+   -------------------------------------------------------------------------- */
+.nav .logo a {
+    letter-spacing: -0.02em;
+}
+#menu a:hover,
+.logo a:hover {
+    color: var(--accent);
+}
+.menu .active {
+    color: var(--accent);
+}
+.menu .active::after {
+    background: var(--accent);
+}
+
+/* Post list cards: accent the title on hover */
+.post-entry:hover .entry-header h2,
+.entry-header h2:hover {
+    color: var(--accent);
+}
+.entry-hint,
+.read-more a {
+    color: var(--accent);
+}
+
+/* Single post title link/hover */
+.post-title a:hover {
+    color: var(--accent);
+}
