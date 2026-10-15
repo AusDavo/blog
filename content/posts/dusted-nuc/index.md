@@ -30,7 +30,7 @@ The giveaway was the idle figure. The CPU sat at 60–63 °C while drawing about
 
 Claude suggested replacing the thermal paste and cleaning away dust as the most helpful first steps. I started with disassembly and dusting: I blew the dust out and wiped the surfaces down with isopropyl alcohol. That alone seems to have done the trick, so I didn't need to touch the thermal paste. There was a bit of dust but nothing like what old desktops used to collect without complaint. Of course, these little NUCs are very compact and so very sensitive to impediments to airflow. The server was off for about an hour and a half.
 
-Here's the temperature graph across the past week for the primary server. You can see that the sensors hovered around 60 to 65 °C before the maintenance. After that, they dropped to about 35 to 40 °C. Because of smoothing, you can't see the numerous spikes to 100 °C in the former period either.
+Here's the temperature graph across the past week for the primary server. You can see that the sensors hovered around 60 to 65 °C before the maintenance. After that, they dropped to about 35 to 40 °C. Because of smoothing, you can't see the numerous spikes to 100 °C in the former period either. Beszel's alerts show them instead: 13 over-90 °C temperature alerts in five days, and none since the clean.
 
 ![Beszel temperature graph for the past week, annotated: an OS and kernel update on 11 October, downtime for dusting on 13 October, then sensors restarting about 25 °C cooler](beszel-temperature-annotated.png)
 
