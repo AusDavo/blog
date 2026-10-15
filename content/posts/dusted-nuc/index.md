@@ -6,6 +6,11 @@ tags:
   - self-hosting
   - homelab
   - monitoring
+cover:
+  image: beszel-temperature-annotated.png
+  alt: Beszel temperature graph showing sensors about 25 °C cooler after dusting
+  relative: true
+  hiddenInSingle: true
 summary: Tracking metrics of my machines with Beszel prompted some spring cleaning that dropped my home server's temperatures by about 25 °C.
 ---
 Over a few months, my wife and I had both noticed that my primary home server and my desktop machine were getting very noisy. The server was the big offender, being located at the edge of the living room. Its fan was whirring hard all of the time and revving up periodically. I'd granted this machine extra RAM a few months ago and I had trimmed some unused services on it to no avail. It turned out the fix was much simpler, and a new monitoring tool is what pointed me to it.
