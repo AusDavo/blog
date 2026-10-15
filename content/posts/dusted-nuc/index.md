@@ -10,7 +10,7 @@ summary: Tracking metrics of my machines with Beszel prompted some spring cleani
 ---
 Over a few months, my wife and I had both noticed that my primary home server and my desktop machine were getting very noisy. The server was the big offender, being located at the edge of the living room. Its fan was whirring hard all of the time and revving up periodically. I'd granted this machine extra RAM a few months ago and I had trimmed some unused services on it to no avail. It turned out the fix was much simpler, and a new monitoring tool is what pointed me to it.
 
-The server is an Intel NUC11TNKi3, the slim model with an i3-1115G4 and 24 GB of RAM. It runs a lot: around 60 containers including [Immich](https://immich.app), a Lightning node and GitHub runners. My desktop is an older NUC8i5BEK.
+The server is an Intel NUC11TNKi3, the slim model with an i3-1115G4 and 24 GB of RAM. It runs a lot: around 60 containers including [Immich](https://immich.app), a Lightning node and GitHub runners. It isn't overworked, though: around 60 containers on two cores averages about 14% CPU. My desktop is an older NUC8i5BEK.
 
 ## Finding Beszel
 
@@ -24,7 +24,7 @@ The presentation of Beszel is clean and attractive. I find myself checking it fr
 
 I watched the stream of data from the primary server closely for a few days. I've moved some intermittent workloads to it (GitHub runners) and it has a few other jobs that are somewhat taxing such as Immich indexing and [Restic](https://restic.net) backups. Beszel revealed that, in addition to running hot at quiet times (~10% CPU), it would rocket to 100 °C if any work arrived and its power was throttled automatically for self-preservation. Clearly something was wrong.
 
-The giveaway was the idle figure. The CPU sat at 60–63 °C while drawing about 3 W. That's far too hot for 3 W, which points to poor heat transfer rather than too much work. The NVMe drive had also logged over six hours above its warning temperature in its lifetime.
+The giveaway was the idle figure. The CPU sat at 60–63 °C while drawing about 3 W. That's far too hot for 3 W, which points to poor heat transfer rather than too much work. Back in June I'd been told a 70 °C idle was normal for a NUC this size and not worth chasing. It wasn't normal. It was dust. The NVMe drive had also logged over six hours above its warning temperature in its lifetime.
 
 ## The fix
 
