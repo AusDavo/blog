@@ -6,6 +6,11 @@ tags:
   - claude-code
   - linux
   - chromium
+cover:
+  image: claude-driving-chromium.jpg
+  alt: Chromium with a Claude tab group and the bar saying Claude started debugging this browser, showing the mHub homepage with a laser cutting through steel
+  relative: true
+  hiddenInSingle: true
 summary: I keep the Claude browser extension in Chromium, a browser I use for nothing else, and out of Firefox where my own life is signed in. Here's why, the two things that tripped me up on Linux, and the setup that works.
 ---
 Firefox is my browser. It's where I'm signed into my own accounts. The Claude browser extension is built for Chrome-family browsers, and I wouldn't want it in my personal browser anyway. So I installed Chromium, the open-source browser Chrome is built from, purely for Claude. The extension installs into it from the Chrome Web Store like any other extension, and Claude Code drives it the same way it would drive Chrome.
@@ -18,7 +23,9 @@ Most of what I build is a web app, and unit tests only get you so far. When Clau
 
 This morning I shipped a security fix to [mHub](https://mhub.au), my manufacturing quoting site. After the deploy, Claude used the extension to upload a part on the quote page in my browser and check that it still priced to the cent. It then filled in a sign-up form and clicked "Create account with passkey". The only thing I did was complete the passkey prompt when it came up. That split suits me: the agent does the clicking and the reading, and I'm there for the step that needs a human.
 
-Doing this in a real browser, rather than a headless one, also means I can watch it work, in its own tab group, and stop it if it wanders.
+![Chromium with Claude's tab groups along the top, the bar saying Claude started debugging this browser with a Cancel button, and an orange glow around the mHub homepage it is driving](claude-driving-chromium.jpg)
+
+Doing this in a real browser, rather than a headless one, also means I can watch it work, in its own tab group, and stop it if it wanders. Chromium makes it obvious: a bar across the top says "Claude" started debugging this browser, with a Cancel button, and the page Claude is driving gets an orange glow around its edge.
 
 ## Why a separate browser
 
