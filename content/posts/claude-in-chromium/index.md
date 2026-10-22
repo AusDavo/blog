@@ -6,14 +6,9 @@ tags:
   - claude-code
   - linux
   - chromium
-cover:
-  image: chromium-brand.png
-  alt: Claude reading navigator.userAgentData in the browser it drives, reporting Chromium 156 on Linux
-  relative: true
-  hiddenInSingle: true
-summary: The Claude browser extension works in Chromium on Linux, but not in the snap. Here's why I bother, the two things that tripped me up, and the setup that works.
+summary: I keep the Claude browser extension in Chromium, a browser I use for nothing else, and out of Firefox where my own life is signed in. Here's why, the two things that tripped me up on Linux, and the setup that works.
 ---
-I use Chromium, not Google Chrome. It's the open-source browser that Chrome is built from, without the Google account sign-in nudges and with nothing extra I didn't ask for. The Claude browser extension installs into it from the Chrome Web Store like any other extension, and Claude Code drives it the same way it would drive Chrome.
+Firefox is my browser. It's where I'm signed into my own accounts. The Claude browser extension is built for Chrome-family browsers, and I wouldn't want it in my personal browser anyway. So I installed Chromium, the open-source browser Chrome is built from, purely for Claude. The extension installs into it from the Chrome Web Store like any other extension, and Claude Code drives it the same way it would drive Chrome.
 
 This morning it took longer than it should have to get that working on my laptop, even though it has worked on my desktop since September. This post is what I learnt, so the next person (or the next Claude session) doesn't repeat it.
 
@@ -23,11 +18,17 @@ Most of what I build is a web app, and unit tests only get you so far. When Clau
 
 This morning I shipped a security fix to [mHub](https://mhub.au), my manufacturing quoting site. After the deploy, Claude used the extension to upload a part on the quote page in my browser and check that it still priced to the cent. It then filled in a sign-up form and clicked "Create account with passkey". The only thing I did was complete the passkey prompt when it came up. That split suits me: the agent does the clicking and the reading, and I'm there for the step that needs a human.
 
-Doing this in my own browser, rather than a headless one, also means I can watch it work, in its own tab group, and stop it if it wanders.
+Doing this in a real browser, rather than a headless one, also means I can watch it work, in its own tab group, and stop it if it wanders.
+
+## Why a separate browser
+
+The extension can read and act in the pages it opens, using whatever that browser is signed into. Every page it reads is also input to the model, and a page can contain text written to steer an agent. In Firefox that would put my personal accounts within reach. In Chromium, the only things signed in are the test accounts I give it for the sites I'm building. If something goes wrong, the damage is limited to what that browser can reach, and that's very little.
+
+It's the same instinct as running a service in its own container: give the agent its own space and keep it small.
 
 ## Gotcha 1: Claude kept reaching for Chrome
 
-Claude Code calls the feature "Claude in Chrome", and the skill it loads assumes Google Chrome. When the browser tools weren't connected, Claude's first move was to load that skill, which ends in a prompt to install the extension in Chrome. I don't have Chrome. I declined it, and then had to explain again that I meant Chromium.
+Claude Code calls the feature "Claude in Chrome", and the skill it loads assumes Google Chrome. When the browser tools weren't connected, Claude's first move was to load that skill, which ends in a prompt to install the extension in Chrome. I don't use Chrome for this. I declined it, and then had to explain again that I meant Chromium.
 
 The fix on the Claude side was to save a memory: check whether the browser tools are actually listed before doing anything, and if they aren't, say so in one line and ask me to connect Chromium, rather than offering Chrome. If you use Chromium, it's worth putting a line like that in your `CLAUDE.md`.
 
@@ -110,4 +111,4 @@ If you also use the Playwright MCP server with `--executable-path /snap/bin/chro
 
 ## Was it worth it?
 
-Yes. Having the agent check its own work in a real browser, in a browser I chose, with me stepping in only for the passkey, is the bit of agentic coding that has made me trust the results most. It just needed the boring plumbing to be right first: a deb instead of a snap, and two small files.
+Yes. Having the agent check its own work in a real browser, one that holds nothing of mine, with me stepping in only for the passkey, is the bit of agentic coding that has made me trust the results most. It just needed the boring plumbing to be right first: a deb instead of a snap, and two small files.
